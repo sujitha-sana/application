@@ -51,6 +51,9 @@ terraform.rc
 *.tfstate
 *.tfstate.*
 
+terraform.tfstate
+terraform.tfstate.backup
+
 # Crash log files
 crash.log
 crash.*.log
