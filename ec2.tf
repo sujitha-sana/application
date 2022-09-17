@@ -12,7 +12,7 @@
 #     values = ["x86_64"]
 #   }
 
-# }
+# #}
 
 # data "aws_ami" "ubuntu1" {
 #   owners      		 = ["679593333241"]
