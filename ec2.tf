@@ -14,29 +14,34 @@
 
 # #}
 
-# data "aws_ami" "ubuntu1" {
-#   owners      		 = ["679593333241"]
-#   most_recent 		 = true
 
-##   filter {
-#     name   		 = "name"
-#     values 		 = ["CentOS Linux 7 x86_64 HVM EBS *"]
-#   }
-#   filter {
-#     name   		 = "architecture"
-#     values 		 = ["x86_64"]
-#   }
-#   filter {
-#     name   		 = "root-device-type"
-#     values 		 = ["ebs"]
-#   }
-# }
+data "aws_ami" "amazon2_ami" {
+  most_recent 		 = true
+
+  filter {
+    name   		 = "owner-alias"
+    values 		 = ["amazon"]
+  }
+
+  filter {
+    name   		 = "name"
+    values 		 = ["amzn2-ami-hvm-*-x86_64-ebs"]
+  }
+  # filter {
+  #   name   		 = "architecture"
+  #   values 		 = ["x86_64"]
+  # }
+  # filter {
+  #   name   		 = "root-device-type"
+  #   values 		 = ["ebs"]
+  # }
+}
 
 
 resource "aws_instance" "frontend_instance" {
   # count         = 1
   depends_on    = [aws_vpc.dev-vpc]
-  ami           =  "ami-0b89f7b3f054b957e"
+  ami           =  data.aws_ami.amazon2_ami.id
   instance_type = var.instance-type
   #vpc_id        = aws_vpc.dev-vpc.id
   subnet_id     = aws_subnet.dev-public[0].id
