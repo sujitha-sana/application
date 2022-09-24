@@ -14,6 +14,4 @@ variable "data-cidr" {
 }
 
 
-variable "instance-type" {
-  
-}
+
